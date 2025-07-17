@@ -1,104 +1,137 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semangat, Neng Yuliasari!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semangat Neng Yuliasari!</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #fce4ec, #f8bbd0);
       margin: 0;
-      padding: 0;
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffe6f0;
       color: #333;
-    }
-
-    .container {
-      padding: 30px 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    img.profile {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid #f06292;
-      margin-bottom: 10px;
+      text-align: center;
+      overflow: hidden;
     }
 
     h1 {
-      color: #c2185b;
-      font-size: 28px;
-    }
-
-    .quote {
-      font-style: italic;
-      color: #555;
-      margin: 20px 0;
-    }
-
-    .audio-player {
-      margin-top: 20px;
-    }
-
-    button {
-      background-color: #ec407a;
-      border: none;
-      padding: 10px 20px;
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 30px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background-color: #d81b60;
+      margin-top: 40px;
+      font-size: 2em;
+      color: #d63384;
     }
 
     .tanggal {
-      font-size: 14px;
-      color: #777;
-      margin-top: 5px;
+      margin-top: 10px;
+      color: #666;
+      font-size: 0.95em;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 10px auto 30px;
+      max-width: 500px;
+    }
+
+    img {
+      width: 180px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn-play {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background: #d63384;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .btn-play:hover {
+      background: #c2176a;
+    }
+
+    /* Love animation */
+    .love {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 5s infinite;
+      opacity: 0.6;
+    }
+
+    .love::before, .love::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .love::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .love::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
+  <h1>Semangat Terus Neng Yuliasari!</h1>
+  <div class="tanggal" id="tanggal">Hari ini: </div>
 
-  <div class="container">
-    <img src="neng.jpg" alt="Neng" class="profile">
+  <img src="neng.jpg" alt="Neng Yuliasari" />
+  <p>Kamu itu hebat banget, jangan pernah ragu sama dirimu sendiri. Aku yakin kamu bisa capai semua impianmu 💖</p>
 
-    <div class="tanggal" id="tanggal">Hari ini: </div>
-
-    <h1>🌸 Semangat, Neng Yuliasari! 🌸</h1>
-    <p>Jangan lupa bahagia ya 💕</p>
-
-    <p class="quote">
-      "Seperti kode yang harus terus diperbaiki, begitu juga hidup. Tapi denganmu, semua jadi lebih indah. <br>
-      Tetap semangat ya, Neng 💖"
-    </p>
-
-    <div class="audio-player">
-      🎵 Lagu: Meant 2 Be – Shakira Jasmine
-      <br>
-      <audio id="lagu" src="meant2be.mp3"></audio>
-      <br>
-      <button onclick="document.getElementById('lagu').play()">▶️ Putar Lagu</button>
-    </div>
-  </div>
+  <button class="btn-play" onclick="toggleMusic()">🎵 Putar / Pause Lagu</button>
+  <audio id="bgmusic" src="meant2be.mp3" loop></audio>
 
   <script>
+    // Tanggal otomatis
     const today = new Date();
-    const formatted = today.toLocaleDateString('id-ID', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    const formattedDate = today.toLocaleDateString('id-ID', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     });
-    document.getElementById('tanggal').textContent = `Hari ini: ${formatted}`;
-  </script>
+    document.getElementById("tanggal").textContent = "Hari ini: " + formattedDate;
 
+    // Musik toggle
+    function toggleMusic() {
+      const music = document.getElementById("bgmusic");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    // Love animation
+    const body = document.body;
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'love';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+  </script>
 </body>
 </html>
