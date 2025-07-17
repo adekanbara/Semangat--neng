@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Semangat Neng Yuliasari!</title>
+  <title>Untuk Neng Yuliasari 💖</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       overflow-x: hidden;
+      background: linear-gradient(to bottom right, #fbe4f0, #d0bcf2);
     }
 
     .heart {
@@ -34,7 +35,7 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-pink-100 to-purple-200 min-h-screen flex items-center justify-center relative">
+<body class="min-h-screen flex items-center justify-center p-4 relative">
 
   <!-- Audio -->
   <audio id="lagu" autoplay loop>
@@ -42,33 +43,46 @@
     Browser kamu tidak mendukung audio.
   </audio>
 
-  <!-- Card Content -->
-  <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-10 max-w-md w-full text-center z-10 relative">
+  <!-- Card -->
+  <div class="bg-white bg-opacity-80 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-10 max-w-lg w-full text-center z-10 relative border border-pink-200">
+
+    <!-- Foto -->
     <img src="neng.jpg" alt="Neng Yuliasari" class="w-32 h-32 rounded-full border-4 border-pink-300 mx-auto shadow-md mb-4 object-cover" />
 
-    <p id="tanggal" class="text-sm text-gray-500 mb-1">Memuat tanggal...</p>
-    <h1 class="text-2xl sm:text-3xl font-bold text-pink-700 mb-3 animate-pulse">🌸 Semangat, Neng Yuliasari! 🌸</h1>
+    <!-- Tanggal -->
+    <p id="tanggal" class="text-sm text-gray-500 mb-2">Memuat tanggal...</p>
 
-    <p id="motivation" class="text-base sm:text-lg text-gray-700 mb-4">Loading semangat...</p>
+    <!-- Judul -->
+    <h1 class="text-3xl font-extrabold text-pink-700 mb-2 tracking-wide">Semangat, Neng Yuliasari! 💕</h1>
 
-    <blockquote class="italic text-gray-600 text-sm sm:text-base mb-6">"Kadang hidup kayak kode error, harus di-debug dulu baru jalan. Tapi kamu bikin semua terasa ringan dan hangat 💻💕"</blockquote>
+    <!-- Motivasi -->
+    <p id="motivation" class="text-lg text-gray-700 mb-6 italic leading-relaxed">...</p>
 
-    <p class="text-sm text-gray-500 mb-1">🎵 Lagu: Meant 2 Be – Shakira Jasmine</p>
-    <button onclick="playMusic()" class="mt-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition">
-      ▶️ Putar Lagu
-    </button>
-    <p class="text-xs text-gray-400 mt-1">(Klik jika lagu tidak otomatis bermain)</p>
+    <!-- Kutipan Cinta -->
+    <blockquote class="italic text-purple-600 text-sm sm:text-base mb-6 border-l-4 border-pink-400 pl-4">
+      "Kadang hidup seperti kode error, butuh debugging untuk lancar. Tapi kamu, Neng, selalu membuat hidup lebih ringan dan berarti."
+    </blockquote>
 
-    <button onclick="alert('Tetap semangat ya, Neng! Kamu luar biasa 🫶')"
-      class="mt-4 bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-full transition">
-      ❤️ Semangat Lagi!
+    <!-- Musik -->
+    <div class="mb-4">
+      <p class="text-sm text-gray-600 mb-1">🎵 Meant 2 Be – Shakira Jasmine</p>
+      <button onclick="playMusic()" class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full text-sm transition">
+        ▶️ Putar Lagu
+      </button>
+      <p class="text-xs text-gray-400 mt-1">(Klik jika lagu tidak otomatis diputar)</p>
+    </div>
+
+    <!-- Tombol Semangat -->
+    <button onclick="alert('Kamu kuat, cantik, dan luar biasa! Jangan ragu melangkah. ✨')"
+      class="mt-4 bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-full transition shadow-lg">
+      💖 Klik untuk Semangat!
     </button>
   </div>
 
   <!-- Floating Hearts -->
   <script>
-    // Tanggal
     document.addEventListener("DOMContentLoaded", () => {
+      // Tanggal
       const today = new Date().toLocaleDateString("id-ID", {
         weekday: "long",
         year: "numeric",
@@ -77,21 +91,23 @@
       });
       document.getElementById("tanggal").textContent = `Hari ini: ${today}`;
 
-      // Motivasi berganti
+      // Motivasi berputar
       const messages = [
-        "Hai Neng Yuliasari 🌸",
-        "Semoga harimu seindah senyummu 😊",
-        "Jangan lupa bahagia ya 💕",
-        "Meski hari sibuk, tetap semangat 💻",
-        "Kamu itu versi terbaik dari kamu sendiri ✨"
+        "🌸 Hai Neng Yuliasari, kamu luar biasa!",
+        "😊 Semoga harimu seindah senyummu.",
+        "💕 Jangan lupa bahagia ya, Neng.",
+        "💻 Meski sibuk, kamu tetap semangat!",
+        "✨ Jadi dirimu sendiri adalah hadiah terbaik."
       ];
       let i = 0;
+      const motivation = document.getElementById("motivation");
+      motivation.textContent = messages[0];
       setInterval(() => {
-        document.getElementById("motivation").textContent = messages[i % messages.length];
-        i++;
+        i = (i + 1) % messages.length;
+        motivation.textContent = messages[i];
       }, 4000);
 
-      // Floating hearts
+      // Hati mengambang
       setInterval(() => {
         const heart = document.createElement("div");
         heart.className = "heart";
@@ -103,13 +119,13 @@
       }, 400);
     });
 
-    // Play music
+    // Play musik
     function playMusic() {
       const audio = document.getElementById("lagu");
       audio.play().then(() => {
-        alert("Lagu diputar 🎵");
+        alert("🎶 Musik diputar");
       }).catch(() => {
-        alert("Klik sekali lagi ya, browser butuh izin 😅");
+        alert("Klik lagi ya, browser perlu izin 😅");
       });
     }
   </script>
