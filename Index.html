@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semangat untuk Neng Yuliasari 💖</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const messages = [
+        "Hai Neng Yuliasari 🌸",
+        "Semoga harimu seindah senyummu 😊",
+        "Jangan lupa bahagia ya 💕",
+        "Meski hari sibuk, tetap semangat 💻",
+        "Kamu itu... versi terbaik dari kamu sendiri ✨"
+      ];
+      let i = 0;
+      setInterval(() => {
+        document.getElementById("motivation").textContent = messages[i % messages.length];
+        i++;
+      }, 3000);
+    });
+  </script>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-purple-200 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-xl w-full text-center">
+    
+    <img src="https://raw.githubusercontent.com/adekanbara/Semangat--neng/main/neng.jpg"
+         alt="Foto Neng Yuliasari"
+         class="rounded-full w-40 h-40 object-cover border-4 border-pink-400 shadow-lg mx-auto mb-4" />
+
+    <?php
+      $date = date("l, d F Y");
+      echo "<p class='text-sm text-gray-500 mb-2'>Hari ini: $date</p>";
+    ?>
+
+    <h1 class="text-3xl font-bold text-pink-700 mb-4 animate-pulse">🌸 Semangat, Neng Yuliasari! 🌸</h1>
+
+    <p id="motivation" class="text-lg text-gray-700 mb-6">Loading semangat...</p>
+
+    <p class="text-base text-gray-600 italic mb-4">"Seperti kode yang harus terus diperbaiki, begitu juga hidup. Tapi denganmu, semua jadi lebih indah. Tetap semangat ya, Neng 💖"</p>
+
+    <div class="mb-6">
+      <iframe id="ytplayer" width="100%" height="250" class="rounded-xl"
+        src="https://www.youtube.com/embed/ZczNtsRQW1g?enablejsapi=1"
+        title="Meant 2 Be - Shakira Jasmine" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <p class="text-sm mt-2 text-gray-500">🎵 Lagu: Meant 2 Be – Shakira Jasmine</p>
+      <button onclick="document.getElementById('ytplayer').contentWindow.postMessage('{\"event\":\"command\",\"func\":\"playVideo\",\"args\":\"\"}', '*')"
+        class="mt-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition">
+        ▶️ Putar Lagu
+      </button>
+    </div>
+
+    <button onclick="alert('Tetap semangat, Neng! Kamu luar biasa ✨')"
+      class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-full transition">
+      Klik untuk Semangat!
+    </button>
+  </div>
+</body>
+</html>
