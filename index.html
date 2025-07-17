@@ -1,135 +1,126 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Semangat Neng Yuliasari!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semangat Hari Ini, Neng Yuliasari!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffe6f0;
-      color: #333;
-      text-align: center;
-      overflow-x: hidden;
+      overflow: hidden;
     }
-
-    h1 {
-      margin-top: 20px;
-      font-size: 2em;
-      color: #d63384;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin: 10px auto 20px;
-      max-width: 500px;
-    }
-
-    img {
-      width: 180px;
-      border-radius: 50%;
-      border: 5px solid #fff;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      margin-top: 20px;
-    }
-
-    .btn-play {
-      padding: 10px 20px;
-      margin-top: 20px;
-      background: #d63384;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s;
-    }
-
-    .btn-play:hover {
-      background: #c2176a;
-    }
-
-    .love {
+    .heart {
       position: fixed;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: float 5s infinite;
-      opacity: 0.6;
-      z-index: 0;
+      color: #ff69b4;
+      animation: float 6s linear infinite;
+      font-size: 20px;
+      user-select: none;
     }
-
-    .love::before, .love::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
-
-    .love::before {
-      top: -10px;
-      left: 0;
-    }
-
-    .love::after {
-      left: -10px;
-      top: 0;
-    }
-
     @keyframes float {
-      0% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
-      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
-    }
-  </style>
-</head>
-<body>
-  <img src="neng.jpg" alt="Neng Yuliasari">
-  <div id="tanggal" style="margin-top: 10px; font-weight: bold;"></div>
-
-  <h1>🌸 Semangat, Neng Yuliasari! 🌸</h1>
-  <p>Jangan lupa bahagia ya 💕</p>
-
-  <p><em>"Seperti kode yang harus terus diperbaiki, begitu juga hidup. Tapi denganmu, semua jadi lebih indah. Tetap semangat ya, Neng 💖"</em></p>
-
-  <audio id="bgmusic" src="meant2be.mp3" loop></audio>
-  <button class="btn-play" onclick="toggleMusic()">🎵 Putar / Pause Lagu</button>
-
-  <!-- JS: Date + Love Animation + Music -->
-  <script>
-    // Tanggal
-    const today = new Date();
-    const formattedDate = today.toLocaleDateString('id-ID', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    document.getElementById("tanggal").textContent = "Hari ini: " + formattedDate;
-
-    // Music toggle
-    function toggleMusic() {
-      const music = document.getElementById("bgmusic");
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
       }
     }
+    img {
+      width: 160px;
+      border-radius: 9999px;
+      border: 4px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin: 0 auto 20px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const messages = [
+        "Hai Neng Yuliasari 🌸",
+        "Semoga harimu seindah senyummu 😊",
+        "Jangan lupa bahagia ya 💕",
+        "Meski hari sibuk, tetap semangat 💻",
+        "Kamu itu... versi terbaik dari kamu sendiri ✨"
+      ];
+      let i = 0;
+      setInterval(() => {
+        document.getElementById("motivation").textContent = messages[i % messages.length];
+        i++;
+      }, 3000);
 
-    // Love animation
-    const body = document.body;
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'love';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-      body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }, 300);
+      const today = new Date().toLocaleDateString('id-ID', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+      document.getElementById("tanggal").textContent = `Hari ini: ${today}`;
+
+      // Floating hearts
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.innerText = "❤️";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }, 500);
+    });
+
+    function playMusic() {
+      const audio = document.getElementById("lagu");
+      audio.play().then(() => {
+        alert("Lagu diputar 🎵");
+      }).catch(() => {
+        alert("Klik sekali lagi kalau belum berbunyi ya 😅");
+      });
+    }
   </script>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-purple-200 min-h-screen flex items-center justify-center p-4 relative">
+  <!-- Audio -->
+  <audio id="lagu" autoplay loop>
+    <source src="https://docs.google.com/uc?export=download&id=1yEn4vLFgDQHRdvcV8sUvabcnkKblgWfr" type="audio/mp3">
+    Browser kamu tidak mendukung audio autoplay.
+  </audio>
+
+  <!-- Main Card -->
+  <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-xl w-full text-center z-10">
+    <!-- Foto -->
+    <img src="neng.jpg" alt="Neng Yuliasari">
+
+    <!-- Tanggal -->
+    <p id="tanggal" class="text-sm text-gray-500 mb-2">Loading tanggal...</p>
+
+    <!-- Judul -->
+    <h1 class="text-3xl font-bold text-pink-700 mb-4 animate-pulse">🌸 Semangat, Neng Yuliasari! 🌸</h1>
+
+    <!-- Motivasi -->
+    <p id="motivation" class="text-lg text-gray-700 mb-6">Loading semangat...</p>
+
+    <!-- Pesan -->
+    <div class="mb-6">
+      <p class="text-base text-gray-600 italic">
+        "Kadang hidup seperti kode, harus di-debug dulu baru jalan. Tapi kamu selalu bikin hari jadi lebih ringan. Tetap semangat ya, Neng!"
+      </p>
+    </div>
+
+    <!-- Lagu Info + Tombol -->
+    <div class="mb-4">
+      <p class="text-sm text-gray-500">🎵 Lagu: Meant 2 Be – Shakira Jasmine</p>
+      <button onclick="playMusic()" class="mt-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-full transition">
+        ▶️ Putar Lagu
+      </button>
+      <p class="text-xs text-gray-400 mt-1">(Klik jika lagu tidak otomatis bermain)</p>
+    </div>
+
+    <!-- Semangat Button -->
+    <button onclick="alert('Tetap semangat, Neng! Kamu luar biasa ✨')"
+      class="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full transition">
+      Klik untuk Semangat!
+    </button>
+  </div>
 </body>
 </html>
