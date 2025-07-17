@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Semangat Neng Yuliasari!</title>
   <style>
     body {
@@ -11,24 +11,18 @@
       background: #ffe6f0;
       color: #333;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     h1 {
-      margin-top: 40px;
+      margin-top: 20px;
       font-size: 2em;
       color: #d63384;
     }
 
-    .tanggal {
-      margin-top: 10px;
-      color: #666;
-      font-size: 0.95em;
-    }
-
     p {
       font-size: 1.2em;
-      margin: 10px auto 30px;
+      margin: 10px auto 20px;
       max-width: 500px;
     }
 
@@ -37,6 +31,7 @@
       border-radius: 50%;
       border: 5px solid #fff;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      margin-top: 20px;
     }
 
     .btn-play {
@@ -55,7 +50,6 @@
       background: #c2176a;
     }
 
-    /* Love animation */
     .love {
       position: fixed;
       width: 20px;
@@ -64,6 +58,7 @@
       transform: rotate(45deg);
       animation: float 5s infinite;
       opacity: 0.6;
+      z-index: 0;
     }
 
     .love::before, .love::after {
@@ -92,17 +87,20 @@
   </style>
 </head>
 <body>
-  <h1>Semangat Terus Neng Yuliasari!</h1>
-  <div class="tanggal" id="tanggal">Hari ini: </div>
+  <img src="neng.jpg" alt="Neng Yuliasari">
+  <div id="tanggal" style="margin-top: 10px; font-weight: bold;"></div>
 
-  <img src="neng.jpg" alt="Neng Yuliasari" />
-  <p>Kamu itu hebat banget, jangan pernah ragu sama dirimu sendiri. Aku yakin kamu bisa capai semua impianmu 💖</p>
+  <h1>🌸 Semangat, Neng Yuliasari! 🌸</h1>
+  <p>Jangan lupa bahagia ya 💕</p>
 
-  <button class="btn-play" onclick="toggleMusic()">🎵 Putar / Pause Lagu</button>
+  <p><em>"Seperti kode yang harus terus diperbaiki, begitu juga hidup. Tapi denganmu, semua jadi lebih indah. Tetap semangat ya, Neng 💖"</em></p>
+
   <audio id="bgmusic" src="meant2be.mp3" loop></audio>
+  <button class="btn-play" onclick="toggleMusic()">🎵 Putar / Pause Lagu</button>
 
+  <!-- JS: Date + Love Animation + Music -->
   <script>
-    // Tanggal otomatis
+    // Tanggal
     const today = new Date();
     const formattedDate = today.toLocaleDateString('id-ID', {
       weekday: 'long',
@@ -112,7 +110,7 @@
     });
     document.getElementById("tanggal").textContent = "Hari ini: " + formattedDate;
 
-    // Musik toggle
+    // Music toggle
     function toggleMusic() {
       const music = document.getElementById("bgmusic");
       if (music.paused) {
